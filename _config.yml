@@ -24,4 +24,6 @@ collections:
   sections:
     output: true
 
+analytics: UA-161565816-2
+
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
