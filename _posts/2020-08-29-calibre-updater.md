@@ -7,4 +7,4 @@ img: github.jpg
 github_repo: calibre-updater
 category: code
 ---
-This script downloads the latest Calibre version (Win 32/64) from the official website. Then it starts the installation process, which needs to be manually completed by the user (for settings, custom installation, etc.).
+**Calibre Updater Tool** is a script downloads the latest Calibre version (Win 32/64) from the official website. Then it starts the installation process, which needs to be manually completed by the user (for settings, custom installation, etc.).
