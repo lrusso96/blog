@@ -984,10 +984,6 @@ table tfoot td {
           align-items: stretch;
 }
 
-.contact {
-  margin-bottom: 70px;
-}
-
 .contact .contact-title {
   position: relative;
   color: #ffffff  ;
@@ -1068,6 +1064,7 @@ footer .copyright {
   font-size: 14px;
   text-align: center;
   margin: 0;
+  margin-top: 70px;
 }
 
 .post {
