@@ -15,3 +15,9 @@ Clearly the following list is not exhaustive and is strongly biased!
 <div class="aspect-ratio">
   <iframe src="https://www.youtube.com/embed/z7rxl5KsPjs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="550" height="275" frameborder="0"></iframe>
 </div>
+
+## Mahler 5, III
+
+<div class="aspect-ratio">
+  <iframe src="https://www.youtube.com/embed/Les39aIKbzE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="550" height="275" frameborder="0"></iframe>
+</div>
