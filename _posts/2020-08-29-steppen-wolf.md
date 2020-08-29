@@ -6,4 +6,4 @@ description: My blog on cryptography.
 img: 
 category: cryptography
 ---
-[Steppen-wolf](https://lrusso96.github.io/steppen-wolf/) is a solitary place for steppen wolves, interested in crypto: notes, random stuff, exercises and theoretical definitions collected as a set of Jekyll posts.
+[Steppen-wolf](https://lrusso96.github.io/steppen-wolf/) is a solitary place for steppen wolves, interested in crypto: notes, random stuff, exercises, and theoretical definitions collected as a set of Jekyll posts.

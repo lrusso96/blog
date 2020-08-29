@@ -7,10 +7,10 @@ url: "https://lrusso96.github.io"
 permalink: /posts/:title.html
 
 # Author Settings
-author: Luigi Russo # add your name
-about-author: MSc. Computer Eningeering student. # add description
-social-github: lrusso96 # add your Github handle
-social-email: russo.1699981@studenti.uniroma1.it # add your Email address
+author: Luigi Russo
+about-author: MSc. Computer Engineering student.
+social-github: lrusso96
+social-email: russo.1699981@studenti.uniroma1.it
 
 # Build Settings
 markdown: kramdown

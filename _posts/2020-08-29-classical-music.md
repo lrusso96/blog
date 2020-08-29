@@ -2,13 +2,13 @@
 layout: post
 title: Classical Music
 date: 2020-08-29 00:00:00 +0300
-description: Some of my favourite classical music.
+description: Some of my favorite classical music.
 img: music.jpg
 img_preview_only: true
 category: fun
 ---
 **Disclaimer**: this section collects some of the best classical music pieces.
-Clearly, the following list is not exhaustive and is strognly biased!
+Clearly the following list is not exhaustive and is strongly biased!
 
 ## Tartini - Violin Sonata in G minor
 
