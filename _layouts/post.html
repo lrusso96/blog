@@ -1,0 +1,37 @@
+---
+layout: main
+---
+<article class="article-page">
+  <div class="page-content">
+
+    {% if page.github_repo %}
+    <div class="page-cover-image">
+      <a href="https://github.com/{{site.social-github}}/{{page.github_repo}}" target="_blank">
+        <figure>
+          <img class="page-image"
+            src="https://github-readme-stats.vercel.app/api/pin/?username={{site.social-github}}&repo={{page.github_repo}}&theme=ayu-mirage"
+            alt="{{post.title}}">
+        </figure>
+      </a>
+    </div>
+    {% elsif page.img_preview_only %}
+    {% elsif page.img %}
+    <div class="page-cover-image">
+      <figure>
+        <img class="page-image" src={{ "/assets/img/" | prepend: site.baseurl | append : page.img}}
+          alt="{{page.title}}">
+        {% if page.fig-caption %}
+        <figcaption>{{page.fig-caption}}</figcaption>
+        {% endif %}
+      </figure>
+    </div> <!-- End Page Cover Image -->
+    {% else %}
+    {% endif %}
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">{{page.title}}</h1>
+      </header>
+      {{content | markdownify}}
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->

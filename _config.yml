@@ -1,0 +1,29 @@
+title: Luigi Russo
+description: >
+  Personal blog.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+
+permalink: /posts/:title.html
+
+# Author Settings
+author: Luigi Russo # add your name
+author-img: david-freeman.jpg # add your photo
+about-author: MSc. Computer Eningeering student. # add description
+social-github: lrusso96 # add your Github handle
+social-email: russo.1699981@studenti.uniroma1.it # add your Email address
+
+# Build Settings
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+  - jekyll-last-modified-at
+
+collections:
+  sections:
+    output: true
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
