@@ -24,3 +24,29 @@ layout: main
   </div>
 </article>
 {% endfor %}
+
+{% for resource in site.resources %}
+{% if resource.category == category_name%}
+<article class="post">
+
+  {% if resource.github_repo %}
+  {% assign external_uri = resource.github_repo | prepend: "/" | prepend: site.social-github | prepend: "https://github.com/" %}
+  {% else %}
+  {% assign external_uri = resource.external_uri %}
+  {% endif %}
+
+
+  {% if resource.img %}
+  <a class="post-thumbnail"
+    style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : resource.img}})"
+    href="{{external_uri }}" target="_blank"></a>
+  {% else %}
+  {% endif %}
+  <div class="post-content">
+    <h2 class="post-title"><a href="{{external_uri}}" target="_blank">{{resource.title}}</a>
+    </h2>
+    <p>{{ resource.description }}</p>
+  </div>
+</article>
+{% endif %}
+{% endfor %}

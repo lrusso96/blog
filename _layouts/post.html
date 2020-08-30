@@ -3,18 +3,7 @@ layout: main
 ---
 <article class="article-page">
   <div class="page-content">
-
-    {% if page.github_repo %}
-    <div class="page-cover-image">
-      <a href="https://github.com/{{site.social-github}}/{{page.github_repo}}" target="_blank">
-        <figure>
-          <img class="page-image"
-            src="https://github-readme-stats.vercel.app/api/pin/?username={{site.social-github}}&repo={{page.github_repo}}&theme=ayu-mirage"
-            alt="{{post.title}}">
-        </figure>
-      </a>
-    </div>
-    {% elsif page.img_preview_only %}
+    {% if page.img_preview_only %}
     {% elsif page.img %}
     <div class="page-cover-image">
       <figure>

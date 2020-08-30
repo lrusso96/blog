@@ -23,6 +23,8 @@ plugins:
 collections:
   sections:
     output: true
+  resources:
+    output: false
 
 analytics: UA-161565816-2
 

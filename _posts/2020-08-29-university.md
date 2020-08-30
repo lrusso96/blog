@@ -3,7 +3,7 @@ layout: post
 title: University
 date: 2020-08-29 00:00:00 +0100
 description: Homework, exercises, labs.
-img: github.jpg
+img: software.jpg
 img_preview_only: true
 category: code
 ---

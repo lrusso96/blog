@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Lelù
-date: 2020-08-29 00:00:00 +0100
 description: A simple crypto LaTeX package.
 img: github.jpg
 github_repo: lelu
