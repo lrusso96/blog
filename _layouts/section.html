@@ -35,7 +35,6 @@ layout: main
   {% assign external_uri = resource.external_uri %}
   {% endif %}
 
-
   {% if resource.img %}
   <a class="post-thumbnail"
     style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : resource.img}})"
@@ -46,6 +45,29 @@ layout: main
     <h2 class="post-title"><a href="{{external_uri}}" target="_blank">{{resource.title}}</a>
     </h2>
     <p>{{ resource.description }}</p>
+
+    {% for lang in resource.languages %}
+    {% case lang %}
+    {% when "Java" %}
+    {% assign hex = "#b07219" %}
+    {% when "JavaScript" %}
+    {% assign hex = "#f1e05a" %}
+    {% when "Kotlin" %}
+    {% assign hex = "#f18e33" %}
+    {% when "PowerShell" %}
+    {% assign hex = "#012456" %}
+    {% when "Ruby" %}
+    {% assign hex = "#701516" %}
+    {% when "Rust" %}
+    {% assign hex = "#dea584" %}
+    {% when "TeX" %}
+    {% assign hex = "#3d6117" %}
+    {% else %}
+    {% assign hex = "#000000" %}
+    {% endcase %}
+    <span class="language-color" style="background-color: {{hex}};"></span>
+    <span class="language-name">{{lang}}</span>
+    {% endfor %}
   </div>
 </article>
 {% endif %}

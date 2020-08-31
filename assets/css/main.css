@@ -1461,3 +1461,17 @@ a.newer-posts:hover {
   left: 0;
   top: 0;
 }
+
+.language-color {
+  line-height: 10px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px
+}
+
+.language-name {
+  line-height: 10px;
+  margin-right: 10px
+}
