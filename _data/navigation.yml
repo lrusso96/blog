@@ -1,11 +1,15 @@
 header:
-  - title: Cryptography
-    url: /cryptography
-
-  - title: Archive
-    url: /archive.html
+  - title: Home
+    url: /
 
   - title: About
     url: /about.html
 
+  - title: Cryptography
+    url: /cryptography
 
+  - title: Projects
+    url: /projects
+
+  - title: Archive
+    url: /archive.html
