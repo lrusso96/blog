@@ -105,6 +105,7 @@ exclude:
   - /screenshots
   - /test
   - /vendor
+  - /script
 
 defaults:
   - scope:
