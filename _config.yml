@@ -1,31 +1,129 @@
-title: Luigi Russo
-description: Personal website.
-baseurl: ""
+theme: jekyll-text-theme 
+
+# Site Settings
+text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url: "https://lrusso96.github.io"
+baseurl: # does not include hostname
+title: Luigi Russo
+description: MSc. Computer Engineering student.
+
+# Language and Timezone
+lang: # the language of your site, default as "en"
+timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
 
 
-permalink: /posts/:title.html
+## => Author and Social
+author:
+  type: # "person" (default), "organization"
+  name: Luigi Russo
+  url:
+  avatar: assets/img/awolf2.jpg # path or url of avatar image (square)
+  bio: MSc. Computer Engineering student.
+  email: russo.1699981@studenti.uniroma1.it
+  github: lrusso96
 
-# Author Settings
-author: Luigi Russo
-about-author: MSc. Computer Engineering student.
-social-github: lrusso96
-social-email: russo.1699981@studenti.uniroma1.it
 
-# Build Settings
-markdown: kramdown
+# GitHub Repository (if the site is hosted by GitHub)
+repository: lrusso96/lrusso96.github.io
+repository_tree: master
+
+
+# Paths
+paths:
+  root    : # title link url, "/" (default)
+  home    : # home layout url, "/" (default)
+  archive : # "/archive.html" (default)
+  rss     : # "/feed.xml" (default)
+
+
+# Post
+# excerpt
+excerpt_separator: <!--more-->
+
+
+## TOC
+toc:
+  selectors: # "h1,h2,h3" (default)
+
+
+# Markdown Enhancements
+# Mathjax
+mathjax: true
+mathjax_autoNumber: # false (default), true
+
+# Mermaid
+mermaid: # false (default), true
+
+# Chart
+chart: # false (default), true
+
+
+# Paginate
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 8
+  permalink: /page:num/
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+
+
+# Sources
+sources: # bootcdn (default), unpkg
+
+
+# Search
+search:
+  provider: default # "default" (default), false, "google", "custom"
+
+  ## Google Custom Search Engine
+  google:
+    custom_search_engine_id: # Google Custom Search Engine ID
+
+
+# Build
+markdown    : kramdown
+highlighter : rouge
+permalink   : date
+
+exclude:
+  - CHANGELOG.md
+  - HOW_TO_RELEASE.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README-*.md
+  - README.md
+  - gulpfile.js
+  - jekyll-text-theme.gemspec
+  - package-lock.json
+  - package.json
+  - /docs
+  - /node_modules
+  - /screenshots
+  - /test
+  - /vendor
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: article
+      sharing: true
+      license: false
+      aside:
+        toc: true
+      show_edit_on_github: false
+      show_subscribe: false
+      pageview: true
+
+
+# Plugins
 plugins:
+  - jekyll-feed
   - jekyll-sitemap
-  - jekyll-paginate
   - jemoji
-  - jekyll-last-modified-at
-
-collections:
-  sections:
-    output: true
-  resources:
-    output: false
-
-analytics: UA-161565816-2
-
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", vendor]
+  - jekyll-paginate-v2

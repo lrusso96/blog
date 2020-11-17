@@ -1,12 +1,8 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'jekyll'
+# gem "jekyll-text-theme", path: "../"
+gem "jekyll-text-theme"
+gem "jekyll-paginate-v2"
 
-gem 'html-proofer'
-
-group :jekyll_plugins do
-  gem "jekyll-sitemap"
-  gem "jekyll-paginate"
-  gem "jemoji"
-  gem "jekyll-last-modified-at"
-end
+gem "tzinfo-data"
+gem "wdm", "~> 0.1.0" if Gem.win_platform?

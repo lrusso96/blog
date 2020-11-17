@@ -1,31 +1,8 @@
 ---
-layout: main
+layout: home
+pagination:
+   enabled: true
+articles:
+   data_source: paginator.posts
+   excerpt_type: html
 ---
-{% for section in site.sections %}
-
-{% if section.category_name %}
-{% assign category_name = section.category_name %}
-{% assign last_modified = section.last_modified_at %}
-{% endif %}
-
-
-{% for post in site.categories[category_name] %}
-{% if post.last_modified_at > last_modified %}
-{% assign last_modified = post.last_modified_at %}
-{% endif %}
-
-{% endfor %}
-
-<article class="post">
-  {% if section.img %}
-  <a class="post-thumbnail"
-    style="background-image: url({{"/assets/img/" | prepend: site.baseurl | append : section.img}})"
-    href="{{section.url | prepend: site.baseurl}}"></a>
-  {% endif %}
-  <div class="post-content">
-    <h2 class="post-title"><a href="{{section.url | prepend: site.baseurl}}">{{ section.title}}</a></h2>
-    <p>{{ section.description }}</p>
-    <span class="post-date">{{last_modified | date: '%Y, %b %d'}}</span>
-  </div>
-</article>
-{% endfor %}
