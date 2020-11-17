@@ -1,22 +1,19 @@
 ---
 title: "Engineering in Computer Science: Survival Material"
+description: Some material that I have written, developed, studied, etc. during my Master's Degree in Engineering in Computer Science
 tags: [University]
 article_header:
   type: overlay
   theme: dark
-  description: Some material that I have written, developed, studied, etc. during my Master's Degree in Engineering in Computer Science
   background_color: '#203028'
   background_image:
     gradient: 'linear-gradient(135deg, rgba(0, 0, 0 , .4), rgba(32, 0, 32, .4))'
     src: /assets/img/software.jpg
 ---
 
-<!--more-->
-
-
 ## Algorithm Design
 
-[This repository](https:github.com/lrusso96/Algorithm-Design) contains my homework for Algorithm Design course held by professor S. Leonardi .
+[This repository](https:github.com/lrusso96/Algorithm-Design) contains my homework for Algorithm Design course held by professor S. Leonardi.
 
 ## Computer and Network Security
 
