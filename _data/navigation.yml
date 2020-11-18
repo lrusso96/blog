@@ -6,10 +6,10 @@ header:
     url: /about.html
 
   - title: Cryptography
-    url: /cryptography
+    url: /cryptography/
 
   - title: Projects
-    url: /projects
+    url: /projects/
 
   - title: Archive
     url: /archive.html
