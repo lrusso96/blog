@@ -2,7 +2,7 @@
 title: "#UnderstandingKids"
 description: Effects of Home Confinement on Children during the Covid-19 Outbreak in Italy
 tags: []
-category: project
+category: projects
 article_header:
   type: overlay
   theme: dark

@@ -2,7 +2,7 @@
 title: "Simple Biblio: Android epub reader + open catalogs"
 description: An Android ebook reader written in Kotlin that allows to download ebooks from open libraries and catalogs.
 tags: [Android, Code, University]
-category: project
+category: projects
 ---
 
 This is a project for Mobile Applications and Cloud Computing course held by prof. R. Beraldi.

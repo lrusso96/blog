@@ -1,5 +1,6 @@
 ---
 title: "[CTW11] - Multilinear Extension in Python"
+category: cryptography
 tags: [Exercise, Python, Thaler, Zero-Knowledge]
 ---
 
