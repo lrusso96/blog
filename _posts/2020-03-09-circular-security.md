@@ -1,11 +1,9 @@
 ---
 title:  Circular Security
+description: The very basic definition of Circular Security.
 categories: cryptography
 tags: [Circular Security, Encryption, PKE, Definition]
 ---
-
-The very basic definition of Circular Security.
-<!--more-->
 
 ## IND-WCIRC-CPA<sup>n</sup>
 

@@ -1,15 +1,14 @@
 ---
 title:  IND-CPA Security and 1-Circular Security
+description: A simple exercise.
 categories: cryptography
 tags: [CPA, Circular Security, Encryption, PKE, Exercise]
 description: Show that IND-CPA Security does not imply 1-Circular Security.
 ---
 
 ## Overview
-[IND-CPA Security]({% post_url 2020-03-09-02 %}) $\not\Rightarrow$ 1-[Circular Security]({% post_url 2020-03-09-03 %}).
+[IND-CPA Security]({% post_url 2020-03-09-ind-cpa-security %}) $\not\Rightarrow$ 1-[Circular Security]({% post_url 2020-03-09-circular-security %}).
 {:.success}
-
-<!--more-->
 
 ## The short answer
 

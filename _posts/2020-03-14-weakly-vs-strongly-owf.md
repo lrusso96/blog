@@ -7,13 +7,11 @@ description: Show that weakly one-way Functions are not necessarily strongly one
 
 We want to show that weakly one-way $\not\Rightarrow$ strongly one-way.
 
-<!--more-->
-
 ## The short answer
 
 In order to prove the above statement, it is sufficient to give an example of a weakly one-way function that is not strongly one-way.
 
-Let $f: \bits^n \to \bits^n$ be a weakly [one-way function]({% post_url 2020-03-10-04 %}) and let $g: \bits^{n+1} \to \bits^{n+1}$ be the following:
+Let $f: \bits^n \to \bits^n$ be a weakly [one-way function]({% post_url 2020-03-10-owf %}) and let $g: \bits^{n+1} \to \bits^{n+1}$ be the following:
 
 $$g(b, x) := \begin{cases}
 (b, f(x)) \mbox{ if } b = 1 \\

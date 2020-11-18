@@ -1,6 +1,7 @@
 ---
 title: Legendary Horn Solos 💛
 tags: [Music]
+modify_date: 2020-11-18
 ---
 
 Some of my favorite horn solos.
@@ -26,3 +27,6 @@ Some of my favorite horn solos.
 
 ## Rachmaninoff - Piano Concerto 2
 <div>{%- include extensions/youtube.html id='TA9yIFaYZrc' -%}</div>
+
+## Dvorak 9
+<div>{%- include extensions/youtube.html id='_1mrwTGIfjM' -%}</div>

@@ -1,12 +1,9 @@
 ---
 title:  Impossibility of perfectly secret PKE
+description: A simple proof to show that perfectly secret public-key encryption is impossible.
 categories: cryptography
 tags: [Encryption, Katz-Lindell, PKE, Exercise]
 ---
-
-A simple proof to show that perfectly secret public-key encryption is impossible.
-
-<!--more-->
 
 ## Overview
 

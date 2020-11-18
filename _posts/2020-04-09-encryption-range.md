@@ -1,11 +1,10 @@
 ---
 title:  Encryption Range
+description: The very basic definition of Encryption Range.
 categories: cryptography
 tags: [Encryption, PKE, Definition]
 ---
 
-The very basic definition of Encryption Range.
-<!--more-->
 ## Definition
 
 Let us consider a private-key encryption scheme $\Pi = (\Gen, \Enc, \Dec)$.

@@ -1,11 +1,9 @@
 ---
 title:  Signature Unforgeability
+description: The very basic definition of Signature Unforgeability.
 categories: cryptography
 tags: [Signature, Definition]
 ---
-
-The very basic definition of Signature Unforgeability.
-<!--more-->
 
 ## Definitions
 

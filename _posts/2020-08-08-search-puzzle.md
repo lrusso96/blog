@@ -1,11 +1,9 @@
 ---
 title:  Search Puzzle
+description: The very basic definition of Search Puzzle.
 categories: cryptography
 tags: [Bitcoin Core, Hash, Puzzle, Definition]
 ---
-
-The very basic definition of Search Puzzle.
-<!--more-->
 
 ## Definition
 
@@ -23,4 +21,4 @@ Solving the puzzle requires finding an input so that the output falls within the
 The size of the target set determines how hard the puzzle is.
 If $\mathcal{Y}$ is the set of all $n$-bit strings the puzzle is trivial, whereas if $\mathcal{Y}$ has only 1 element the puzzle is maximally hard.
 
-If a search puzzle is [puzzle-friendly]({% post_url 2020-08-08-10 %}), this implies that there is no solving strategy for this puzzle which is much better than just trying random values of $x$.
+If a search puzzle is [puzzle-friendly]({% post_url 2020-08-08-puzzle-friendliness %}), this implies that there is no solving strategy for this puzzle which is much better than just trying random values of $x$.

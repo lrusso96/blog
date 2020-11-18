@@ -1,12 +1,9 @@
 ---
 title:  El Gamal is not CCA-secure
+description: A simple proof to show that El Gamal encryption scheme is not CCA-secure.
 categories: cryptography
 tags: [CCA, Encryption, Katz-Lindell, PKE, Exercise]
 ---
-
-A simple proof to show that El Gamal encryption scheme is not CCA-secure.
-
-<!--more-->
 
 ## Overview
 This is one of the exercises proposed by Katz and Lindell[^1].

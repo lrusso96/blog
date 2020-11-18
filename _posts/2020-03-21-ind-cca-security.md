@@ -1,11 +1,9 @@
 ---
 title:  IND-CCA Security
+description: The very basic definition of Indistinguishability under CCA.
 categories: cryptography
 tags: [CCA, Encryption, PKE, Definition]
 ---
-
-The very basic definition of Indistinguishability under CCA.
-<!--more-->
 
 ## Definitions
 
@@ -39,7 +37,7 @@ An adversary A is said to be **valid** if does not query the decryption oracle w
 
 ## Remarks
 
-Note that the main difference with respect to the [CPA scenario]({% post_url 2020-03-09-02 %}) is that the attacker is also given access to a decryption oracle $\Dec(sk, \cdot)$:
+Note that the main difference with respect to the [CPA scenario]({% post_url 2020-03-09-ind-cpa-security %}) is that the attacker is also given access to a decryption oracle $\Dec(sk, \cdot)$:
 
 - CCA-1 considers the **non-adaptive** case, when the adversary may invoke the decryption oracle only before seeing the challenge ciphertext $c$
 - CCA-2 captures an **adaptive** scenario, when the adversary may invoke the decryption oracle whenever it wants. The only restriction is that it cannot ask for the decryption of the challenge ciphertext.

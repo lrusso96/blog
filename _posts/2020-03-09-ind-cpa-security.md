@@ -1,11 +1,9 @@
 ---
 title:  IND-CPA Security
+description: The very basic definition of Indistinguishability under CPA.
 categories: cryptography
 tags: [CPA, Encryption, PKE, Definition]
 ---
-
-The very basic definition of Indistinguishability under CPA.
-<!--more-->
 
 ## Definition
 
