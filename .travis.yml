@@ -17,3 +17,8 @@ addons:
     - libcurl4-openssl-dev
 
 cache: bundler 
+
+after_success: |
+    sudo pip install ghp-import && \
+    ghp-import _site && \
+    git push -qf https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
