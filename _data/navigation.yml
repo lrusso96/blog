@@ -1,15 +1,9 @@
 header:
-  - title: Home
+  - title: Blog posts
     url: /
 
   - title: About
     url: /about.html
-
-  - title: Cryptography
-    url: /cryptography/
-
-  - title: Projects
-    url: /projects/
 
   - title: Archive
     url: /archive.html
