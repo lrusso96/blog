@@ -1,5 +1,6 @@
 ---
 title: Legendary Horn Solos 💛
+category: extra
 tags: [Music]
 modify_date: 2020-11-18
 ---

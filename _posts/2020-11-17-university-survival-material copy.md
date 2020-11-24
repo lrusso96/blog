@@ -1,6 +1,7 @@
 ---
 title: "Engineering in Computer Science: Survival Material"
 description: Some material that I have written, developed, studied, etc. during my Master's Degree in Engineering in Computer Science
+category: extra
 tags: [University]
 article_header:
   type: overlay
