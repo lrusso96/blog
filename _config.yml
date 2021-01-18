@@ -3,8 +3,8 @@ theme: jekyll-text-theme
 # Site Settings
 text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url: "https://lrusso96.github.io/blog"
-baseurl: # does not include hostname
+url: "https://lrusso96.github.io"
+baseurl: "/blog"
 title: Luigi Russo
 description: MSc. Computer Engineering student.
 
