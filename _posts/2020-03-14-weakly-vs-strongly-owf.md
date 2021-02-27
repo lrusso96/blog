@@ -58,6 +58,6 @@ The previous reduction can be adapted[^note2] to show that we can attack $f$ wit
 
 - O. Goldreich. Foundations of Cryptography. 2001
 
-[^note1]: if we assume $f$ is strongly one-way, then the reduction becomes even smpler: maybe, later on, I will write it down in a new post.
+[^note1]: if we assume $f$ is strongly one-way, then the reduction becomes even simpler: maybe, later on, I will write it down in a new post.
 
 [^note2]: $A'$ must sample $x' \samples \bits^{n-l}$ and then run $A(0^l\|\|x', y)$. It is crucial, in the reduction, that $x'$ is sampled at random.

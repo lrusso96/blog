@@ -14,7 +14,7 @@ article_header:
 
 ## Algorithm Design
 
-[This repository](https://github.com/lrusso96/Algorithm-Design) contains my homework for Algorithm Design course held by professor S. Leonardi.
+[This repository](https://github.com/lrusso96/Algorithm-Design) contains my homework for the Algorithm Design course held by professor S. Leonardi.
 
 ## Computer and Network Security
 
@@ -26,7 +26,7 @@ In [this repository](https://github.com/lrusso96/Cryptography) I have collected 
 
 ## Machine Learning
 
-[Here](https://github.com/lrusso96/Machine-Learning) you can find my exercises and myhomework for Machine Learning course held by professor L. Iocchi.
+[Here](https://github.com/lrusso96/Machine-Learning) you can find my exercises and my homework for the Machine Learning course held by professor L. Iocchi.
 
 ## Network Infrastructures
 

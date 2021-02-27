@@ -13,11 +13,11 @@ We define the encryption range $ \textrm{Range}_n(k) = \\{ \Enc_k(x) \| x \in \b
 
 ### Elusive range
 
-$\Pi$ has an elusive range if forall PPT adversaries A, all polynomial $p$ and sufficiently large $n$'s, it holds that:
+$\Pi$ has an elusive range if for all PPT adversaries A, all polynomial $p$ and sufficiently large $n$'s, it holds that:
 
 $$Pr[\textrm{A}(1^n) \in \textrm{Range}_n(k) | k \samples \Gen(1^n)] \le \frac{1}{p(n)} $$
 
-Intuitively, if a scheme has such a property, it is computationally hard for an attacker to generate a valid ciphertext: i.e. $\Dec_k(c_i) = \bot$ for most of the ciphertext $c_i$ that an attacker can produce (without knowing the key, of course).
+Intuitively, if a scheme has such a property, it is computationally hard for an attacker to generate a valid ciphertext: i.e., $\Dec_k(c_i) = \bot$ for most of the ciphertext $c_i$ that an attacker can produce (without knowing the key, of course).
 
 ### Efficiently verifiable range
 

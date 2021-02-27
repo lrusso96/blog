@@ -73,7 +73,7 @@ def chi(w: List[int], x: List[int]):
 
 ## Run the code
 
-In order to execute the snippet above, we can write a simple `main` program.
+To execute the snippet above, we can write a simple `main` program.
 
 {% highlight python %}
 if __name__ == "__main__":

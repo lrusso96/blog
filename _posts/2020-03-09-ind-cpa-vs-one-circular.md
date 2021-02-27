@@ -19,8 +19,8 @@ The modified scheme is still IND-CPA, but its 1-circular security is completely 
 
 ### A few details
 
-The algorithm $\Enc'$ takes in input only the public key $pk$, so how can it behave differently when it receives $sk$ as input? The trick here is to run $\Dec$, since it is a public algorithm as well, in order to check whether $m = sk$.
+The algorithm $\Enc'$ takes in input only the public key $pk$, so how can it behave differently when it receives $sk$ as input? The trick here is to run $\Dec$, since it is a public algorithm as well, to check whether $m = sk$.
 
 Indeed, compute $c \samples \Enc(pk, r)$, for a random message $r$ and then run $r' := \Dec(pk, sk:=m, c)$. If $r = r'$ we assume that $m$ is the secret key!
 
-**Note:** In order to minimize the possibility of making a wrong assumption, we can run many times the protocol described above.
+**Note:** To minimize the possibility of making a wrong assumption, we can run many times the protocol described above.
