@@ -107,6 +107,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.7.0)
+    webrick (1.7.0)
     yell (2.2.2)
     zeitwerk (2.4.2)
 
@@ -117,6 +118,7 @@ DEPENDENCIES
   html-proofer
   jekyll-paginate-v2
   jekyll-text-theme
+  webrick (~> 1.7)
 
 BUNDLED WITH
-   2.1.4
+   2.2.11
