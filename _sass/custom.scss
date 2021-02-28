@@ -1,0 +1,8 @@
+.progress {
+    background: linear-gradient(to right, $main-color-1 var(--scroll), transparent 0);
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 4px;
+    z-index: 1;
+}
