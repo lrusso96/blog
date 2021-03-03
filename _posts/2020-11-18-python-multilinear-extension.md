@@ -1,16 +1,22 @@
 ---
 title: "[CTW11] - Multilinear Extension in Python"
+description: An exercise by Justin Thaler
 category: cryptography
 tags: [Exercise, Python, Thaler, Zero-Knowledge]
+article_header:
+  type: overlay
+  theme: dark
+  background_image:
+    gradient: 'linear-gradient(135deg, black, rgba(0, 0, 32, .7))'
 ---
+## Overview
 
 Here is an exercise proposed in the excellent manuscript **Proofs, Arguments, and Zero-Knowledge** by **Justin Thaler**.
 
-<!--more-->
-
 See also [my solutions](https://github.com/lrusso96/proofs) on GitHub.
 
-## Overview
+## The problem
+
 Fix some prime p of your choosing. Write a Python program that takes as input
 an array of length 2^l specifying all evaluations of a function f:{0,1} → Fp
 and a vector r ∈ Fp and outputs f'(r).

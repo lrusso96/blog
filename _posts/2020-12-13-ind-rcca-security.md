@@ -3,6 +3,11 @@ title:  IND-RCCA Security
 description: The basic definition of Indistinguishability under Replayable CCA.
 categories: cryptography
 tags: [RCCA, Encryption, PKE, Definition]
+article_header:
+  type: overlay
+  theme: dark
+  background_image:
+    gradient: 'linear-gradient(135deg, black, rgba(32, 0, 32, .7))'
 ---
 
 ## Replayable CCA

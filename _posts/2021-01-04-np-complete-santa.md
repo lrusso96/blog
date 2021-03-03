@@ -6,9 +6,8 @@ tags: [Exercise, NP]
 article_header:
   type: overlay
   theme: dark
-  background_color: '#203028'
   background_image:
-    gradient: 'linear-gradient(135deg, rgba(0, 0, 0 , .4), rgba(32, 0, 32, .4))'
+    gradient: 'linear-gradient(135deg, rgba(0, 0, 0 , .1), rgba(0, 0, 0 , .6), rgba(32, 0, 32, .1))'
     src: https://muskoka411.com/wp-content/uploads/2015/12/santa-claus.jpg
 
 ---
@@ -60,12 +59,12 @@ Otherwise, we take one of the sleighs (i.e., one of the different 187 assignment
 
 ### Does it work?
 
-#### If $s$ is not satisfiable, $t$ is not satisfiable
+#### If *s* is not satisfiable, *t* is not satisfiable
 
 This follows from the fact that Santa cannot find a single sleigh (and he should find 187 to solve the problem!) which satisfies the formula.
 So, when Santa returns "no" for $t$, we can safely return "unsatisfiable" for $s$.
 
-#### If $s$ is satisfiable, $t$ has at least one solution
+#### If *s* is satisfiable, *t* has at least one solution
 
 Let $x$ be a valid assignment for $s$.
 Then we claim $x'$ is a valid solution for $t$, where $x'$ is as follows:

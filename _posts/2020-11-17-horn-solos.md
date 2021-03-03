@@ -1,13 +1,15 @@
 ---
 title: Legendary Horn Solos 💛
+description: Some of my favorite horn solos
 category: extra
 tags: [Music]
 modify_date: 2020-11-18
+article_header:
+  type: overlay
+  theme: dark
+  background_image:
+    gradient: 'linear-gradient(135deg, black, rgba(0, 0, 32, .7))'
 ---
-
-Some of my favorite horn solos.
-<!--more-->
-
 ## Tchaikovsky 5, II
 <div>{%- include extensions/youtube.html id='eEbO80q66ak' -%}</div>
 
