@@ -56,7 +56,7 @@ chart: # false (default), true
 # Pagination Settings
 pagination:
   enabled: true
-  per_page: 8
+  per_page: 15
   permalink: /page:num/
   limit: 0
   sort_field: "date"
