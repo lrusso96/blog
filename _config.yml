@@ -1,4 +1,4 @@
-theme: jekyll-text-theme 
+theme: jekyll-text-theme
 
 # Site Settings
 text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
@@ -12,7 +12,6 @@ description: MSc. Computer Engineering student.
 lang: # the language of your site, default as "en"
 timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
 
-
 ## => Author and Social
 author:
   type: # "person" (default), "organization"
@@ -23,29 +22,24 @@ author:
   email: russo.1699981@studenti.uniroma1.it
   github: lrusso96
 
-
 # GitHub Repository (if the site is hosted by GitHub)
 repository: lrusso96/lrusso96.github.io
 repository_tree: master
 
-
 # Paths
 paths:
-  root    : # title link url, "/" (default)
-  home    : # home layout url, "/" (default)
-  archive : # "/archive.html" (default)
-  rss     : # "/feed.xml" (default)
-
+  root: # title link url, "/" (default)
+  home: # home layout url, "/" (default)
+  archive: # "/archive.html" (default)
+  rss: # "/feed.xml" (default)
 
 # Post
 # excerpt
 excerpt_separator: <!--more-->
 
-
 ## TOC
 toc:
   selectors: # "h1,h2,h3" (default)
-
 
 # Markdown Enhancements
 # Mathjax
@@ -58,7 +52,6 @@ mermaid: # false (default), true
 # Chart
 chart: # false (default), true
 
-
 # Paginate
 # Pagination Settings
 pagination:
@@ -66,13 +59,11 @@ pagination:
   per_page: 8
   permalink: /page:num/
   limit: 0
-  sort_field: 'date'
+  sort_field: "date"
   sort_reverse: true
-
 
 # Sources
 sources: # bootcdn (default), unpkg
-
 
 # Search
 search:
@@ -82,11 +73,13 @@ search:
   google:
     custom_search_engine_id: # Google Custom Search Engine ID
 
+comments:
+  provider: "custom"
 
 # Build
-markdown    : kramdown
-highlighter : rouge
-permalink   : date
+markdown: kramdown
+highlighter: rouge
+permalink: date
 
 exclude:
   - CHANGELOG.md
@@ -120,7 +113,6 @@ defaults:
       show_edit_on_github: false
       show_subscribe: false
       pageview: true
-
 
 # Plugins
 plugins:
