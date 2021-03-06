@@ -3,7 +3,6 @@ title:  Puzzle friendliness
 description: The very basic definition of Puzzle friendliness.
 categories: cryptography
 tags: [Hash, Puzzle, Definition]
-description: 
 ---
 
 ## Definition
