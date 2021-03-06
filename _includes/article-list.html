@@ -76,7 +76,7 @@
             {%- include snippets/assign.html target=site.data.variables.default.page.pageview
               source0=_article.pageview -%}
             {%- assign _show_pageview = __return -%}
-            {%- include article-info.html article=_article show_pageview=_show_pageview force_modify=true -%}
+            {%- include article-info.html article=_article show_pageview=_show_pageview force_modify=true article_url=_article_url -%}
           {%- endif -%}
         </div>
       </article>
