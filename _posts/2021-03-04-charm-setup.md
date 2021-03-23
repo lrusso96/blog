@@ -3,12 +3,14 @@ title: "How to set-up Charm on Ubuntu"
 description: Simple installation guide for Charm framework
 category: cryptography
 tags: [Python]
+modify_date: 2021-03-23
 article_header:
   type: overlay
   theme: dark
   background_image:
-    gradient: 'linear-gradient(135deg, black, rgba(0, 0, 32, .7))'
+    gradient: "linear-gradient(135deg, black, rgba(0, 0, 32, .7))"
 ---
+
 ## What is Charm
 
 [**Charm**](https://github.com/JHUISI/charm) is a Python framework for rapidly prototyping advanced cryptosystems.
@@ -23,7 +25,7 @@ I have found the documentation a bit messy. For this reason, I have decided to w
 
 ### Requirements
 
-As far as I know, Charm does not work with Python 3.8+ versions: the default branch is a *dev* branch, and the latest stable release dates back to 2011! 
+As far as I know, Charm does not work with Python 3.8+ versions: the default branch is a _dev_ branch, and the latest stable release dates back to 2011!
 
 The first thing to do is to set-up a Python 3.7.1 environment.
 We start by downloading Python 3.7 binaries.
@@ -31,10 +33,10 @@ We start by downloading Python 3.7 binaries.
 ```
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.7 python 3.7-dev
+sudo apt install python3.7 python3.7-dev
 ```
 
-Then we can install *virtualenv* to manage the virtual environment; we name this environment *py37* and, finally, we activate it.
+Then we can install _virtualenv_ to manage the virtual environment; we name this environment _py37_ and, finally, we activate it.
 
 ```
 sudo apt install virtualenv
