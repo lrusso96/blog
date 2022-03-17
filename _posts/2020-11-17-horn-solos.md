@@ -33,3 +33,6 @@ article_header:
 
 ## Dvorak 9
 <div>{%- include extensions/youtube.html id='_1mrwTGIfjM' -%}</div>
+
+## Mahler 5, III
+<div>{%- include extensions/youtube.html id='52Q0FVB8q3E' -%}</div>
