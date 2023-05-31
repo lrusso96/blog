@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.0">Jekyll</generator><link href="https://lrusso96.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lrusso96.github.io/blog/" rel="alternate" type="text/html" /><updated>2023-05-31T15:42:00+00:00</updated><id>https://lrusso96.github.io/blog/feed.xml</id><title type="html">Luigi Russo</title><subtitle>MSc. Computer Engineering student.</subtitle><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><entry><title type="html">How to set-up Charm on Ubuntu</title><link href="https://lrusso96.github.io/blog/cryptography/2021/03/04/charm-setup.html" rel="alternate" type="text/html" title="How to set-up Charm on Ubuntu" /><published>2021-03-04T00:00:00+00:00</published><updated>2021-03-04T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/cryptography/2021/03/04/charm-setup</id><content type="html" xml:base="https://lrusso96.github.io/blog/cryptography/2021/03/04/charm-setup.html">&lt;h2 id=&quot;what-is-charm&quot;&gt;What is Charm&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/JHUISI/charm&quot;&gt;&lt;strong&gt;Charm&lt;/strong&gt;&lt;/a&gt; is a Python framework for rapidly prototyping advanced cryptosystems.
+It was designed from the ground up to minimize development time and code complexity.&lt;/p&gt;
+
+&lt;p&gt;Charm uses a hybrid design: performance-intensive mathematical operations are implemented in native C modules, while cryptosystems themselves are written in a readable, high-level language.
+Charm additionally provides new components to facilitate the rapid development of new schemes and protocols.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;I have found the documentation a bit messy. For this reason, I have decided to write this simple post to explain how I have managed to install Charm v0.50 on my Ubuntu 20.4 machine.&lt;/p&gt;
+
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
+
+&lt;p&gt;As far as I know, Charm does not work with Python 3.8+ versions: the default branch is a &lt;em&gt;dev&lt;/em&gt; branch, and the latest stable release dates back to 2011!&lt;/p&gt;
+
+&lt;p&gt;The first thing to do is to set-up a Python 3.7.1 environment.
+We start by downloading Python 3.7 binaries.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.7 python3.7-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we can install &lt;em&gt;virtualenv&lt;/em&gt; to manage the virtual environment; we name this environment &lt;em&gt;py37&lt;/em&gt; and, finally, we activate it.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt install virtualenv
+virtualenv -p /usr/bin/python3.7 py37
+source py37/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;dependencies&quot;&gt;Dependencies&lt;/h3&gt;
+
+&lt;p&gt;Charm relies on some libraries. So we can install them by running&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install -y libgmp10 libgmp-dev
+sudo apt-get install -y openssl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point, we can clone the Charm GitHub repository and install all the other dependencies&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/JHUISI/charm
+cd charm
+pip install -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;build&quot;&gt;Build&lt;/h3&gt;
+
+&lt;p&gt;We try to build Charm running the following commands&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./configure.sh
+cd ./deps/pbc &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo ldconfig &amp;amp;&amp;amp; cd -
+make
+make install &amp;amp;&amp;amp; sudo ldconfig
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;test&quot;&gt;Test&lt;/h3&gt;
+
+&lt;p&gt;To assess that the installation is successful, we can run the test suite&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;have-fun-with-charm&quot;&gt;Have fun with Charm!&lt;/h2&gt;
+
+&lt;p&gt;Once the installation finishes and the test suite passes (despite some warnings), we are ready to prototype cryptographic systems from scratch or on top of already-implemented schemes: take a look at the &lt;a href=&quot;https://jhuisi.github.io/charm/&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="cryptography" /><category term="Python" /><summary type="html">What is Charm Charm is a Python framework for rapidly prototyping advanced cryptosystems. It was designed from the ground up to minimize development time and code complexity. Charm uses a hybrid design: performance-intensive mathematical operations are implemented in native C modules, while cryptosystems themselves are written in a readable, high-level language. Charm additionally provides new components to facilitate the rapid development of new schemes and protocols. Installation I have found the documentation a bit messy. For this reason, I have decided to write this simple post to explain how I have managed to install Charm v0.50 on my Ubuntu 20.4 machine. Requirements As far as I know, Charm does not work with Python 3.8+ versions: the default branch is a dev branch, and the latest stable release dates back to 2011! The first thing to do is to set-up a Python 3.7.1 environment. We start by downloading Python 3.7 binaries. sudo add-apt-repository ppa:deadsnakes/ppa sudo apt update sudo apt install python3.7 python3.7-dev Then we can install virtualenv to manage the virtual environment; we name this environment py37 and, finally, we activate it. sudo apt install virtualenv virtualenv -p /usr/bin/python3.7 py37 source py37/bin/activate Dependencies Charm relies on some libraries. So we can install them by running sudo apt-get install -y libgmp10 libgmp-dev sudo apt-get install -y openssl At this point, we can clone the Charm GitHub repository and install all the other dependencies git clone https://github.com/JHUISI/charm cd charm pip install -r requirements.txt Build We try to build Charm running the following commands ./configure.sh cd ./deps/pbc &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo ldconfig &amp;amp;&amp;amp; cd - make make install &amp;amp;&amp;amp; sudo ldconfig Test To assess that the installation is successful, we can run the test suite make test Have fun with Charm! Once the installation finishes and the test suite passes (despite some warnings), we are ready to prototype cryptographic systems from scratch or on top of already-implemented schemes: take a look at the official documentation.</summary></entry><entry><title type="html">An NP-Complete Problem for Santa 🎅</title><link href="https://lrusso96.github.io/blog/extra/2021/01/04/np-complete-santa.html" rel="alternate" type="text/html" title="An NP-Complete Problem for Santa 🎅" /><published>2021-01-04T00:00:00+00:00</published><updated>2021-01-04T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/extra/2021/01/04/np-complete-santa</id><content type="html" xml:base="https://lrusso96.github.io/blog/extra/2021/01/04/np-complete-santa.html">&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+
+&lt;p&gt;Santa has a real challenge this year: 187 of his elves were quarantined with Covid-19 during this Christmas time, and are now clinically depressed because they missed all the fun.
+He wants to give each of them a perfect present, and since they have always envied Santa for his magical sleigh, his idea is to give each of them his own toy sleigh.&lt;/p&gt;
+
+&lt;p&gt;Now in the shed, he has a set P of n pieces that will clearly be sufficient to build the sleighs, each of which is available in large amounts.
+The pieces are such that you will never need more than a copy of any $p \in P$ for the same sleigh.&lt;/p&gt;
+
+&lt;p&gt;Santa, as an expert, knows what a good sleigh needs: for example, they might each need a front light, and there might be different ones $(p_1, \dots, p_l)$ in P, so you must use $p_1$ or $\dots$ or $p_l$.
+Santa has a long list of all kinds of different constraints on the sleigh assembly, which he is writing down similar to above.&lt;/p&gt;
+
+&lt;p&gt;As the new intern, Santa is calling you into his office, and while you are eating a nice sugar cane, he tasks you with the following: tomorrow, it is your job to write and run a polynomial-time algorithm that gets as input a formal depiction of Santa’s constraints, and outputs all 187 different sets of parts for the sleigh (if possible, otherwise return ‘no’).&lt;/p&gt;
+
+&lt;p&gt;Santa promises the assembly will be done by more experienced workers - all you have to take care of is that no two sleighs are exactly the same, so the gifts still feel special enough.
+Despite the sugar cane, the assignment leaves a bitter taste in your mouth.
+However, not wanting to ruin your own Christmas, you don’t protest right away: that would look just lazy.
+Come up with a mathematical proof that, in general, this problem is clearly a hard one and might not be solvable for you in a day.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;I am going to show that the above problem is NP-complete.&lt;/p&gt;
+
+&lt;h3 id=&quot;np&quot;&gt;NP&lt;/h3&gt;
+
+&lt;p&gt;First of all, note that given a solution, i.e., an assignment for $187 \cdot  |P|$ variables, we can check in polynomial-time its correctness: indeed, we simply verify that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;each sleigh satisfies the constraints (clearly, we assume the number of constraints is polynomial in $|P|$)&lt;/li&gt;
+  &lt;li&gt;each sleigh is unique (at most $186 + 185 + \dots + 1$ comparisons)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;np-hardness&quot;&gt;NP-Hardness&lt;/h3&gt;
+
+&lt;p&gt;We reduce the above problem to SAT.&lt;/p&gt;
+
+&lt;p&gt;Given an instance $s \in$ SAT expressed as a formula ($p_1$ or $p_2$ or $\dots$ or $p_k$) and $\dots$ and ($p_l$ or $\dots$ or $p_n$), we create an instance $t$ of the problem defined above as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;we map each boolean variable $p_i$ to a component $p_i \in P$&lt;/li&gt;
+  &lt;li&gt;the formula of $s$ becomes the set of contraints for $t$&lt;/li&gt;
+  &lt;li&gt;we then create 187 &lt;em&gt;fake&lt;/em&gt; components $y_i, i \in [1, 187]$&lt;/li&gt;
+  &lt;li&gt;finally, we add a &lt;em&gt;fake&lt;/em&gt; sleigh contraint ($y_1$ or $y_2$ or $\dots$ or $y_{187}$)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At this point, we run the solving algorithm for $t$.&lt;/p&gt;
+
+&lt;p&gt;If we receive a “no” answer, we claim $s$ cannot be satisfied.
+Otherwise, we take one of the sleighs (i.e., one of the different 187 assignments of $|P| + 187$ variables), we remove the fake $y_i$ variables from it, and we return this as a solution for $s$.&lt;/p&gt;
+
+&lt;h3 id=&quot;does-it-work&quot;&gt;Does it work?&lt;/h3&gt;
+
+&lt;h4 id=&quot;if-s-is-not-satisfiable-t-is-not-satisfiable&quot;&gt;If &lt;em&gt;s&lt;/em&gt; is not satisfiable, &lt;em&gt;t&lt;/em&gt; is not satisfiable&lt;/h4&gt;
+
+&lt;p&gt;This follows from the fact that Santa cannot find a single sleigh (and he should find 187 to solve the problem!) which satisfies the formula.
+So, when Santa returns “no” for $t$, we can safely return “unsatisfiable” for $s$.&lt;/p&gt;
+
+&lt;h4 id=&quot;if-s-is-satisfiable-t-has-at-least-one-solution&quot;&gt;If &lt;em&gt;s&lt;/em&gt; is satisfiable, &lt;em&gt;t&lt;/em&gt; has at least one solution&lt;/h4&gt;
+
+&lt;p&gt;Let $x$ be a valid assignment for $s$.
+Then we claim $x’$ is a valid solution for $t$, where $x’$ is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sleigh $i$ is exactly as $x$ and has $y_i = 1, y_j = 0, j \ne i$&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="extra" /><category term="Exercise" /><category term="NP" /><summary type="html">The problem Santa has a real challenge this year: 187 of his elves were quarantined with Covid-19 during this Christmas time, and are now clinically depressed because they missed all the fun. He wants to give each of them a perfect present, and since they have always envied Santa for his magical sleigh, his idea is to give each of them his own toy sleigh. Now in the shed, he has a set P of n pieces that will clearly be sufficient to build the sleighs, each of which is available in large amounts. The pieces are such that you will never need more than a copy of any $p \in P$ for the same sleigh. Santa, as an expert, knows what a good sleigh needs: for example, they might each need a front light, and there might be different ones $(p_1, \dots, p_l)$ in P, so you must use $p_1$ or $\dots$ or $p_l$. Santa has a long list of all kinds of different constraints on the sleigh assembly, which he is writing down similar to above. As the new intern, Santa is calling you into his office, and while you are eating a nice sugar cane, he tasks you with the following: tomorrow, it is your job to write and run a polynomial-time algorithm that gets as input a formal depiction of Santa’s constraints, and outputs all 187 different sets of parts for the sleigh (if possible, otherwise return ‘no’). Santa promises the assembly will be done by more experienced workers - all you have to take care of is that no two sleighs are exactly the same, so the gifts still feel special enough. Despite the sugar cane, the assignment leaves a bitter taste in your mouth. However, not wanting to ruin your own Christmas, you don’t protest right away: that would look just lazy. Come up with a mathematical proof that, in general, this problem is clearly a hard one and might not be solvable for you in a day. Solution I am going to show that the above problem is NP-complete. NP First of all, note that given a solution, i.e., an assignment for $187 \cdot |P|$ variables, we can check in polynomial-time its correctness: indeed, we simply verify that: each sleigh satisfies the constraints (clearly, we assume the number of constraints is polynomial in $|P|$) each sleigh is unique (at most $186 + 185 + \dots + 1$ comparisons) NP-Hardness We reduce the above problem to SAT. Given an instance $s \in$ SAT expressed as a formula ($p_1$ or $p_2$ or $\dots$ or $p_k$) and $\dots$ and ($p_l$ or $\dots$ or $p_n$), we create an instance $t$ of the problem defined above as follows: we map each boolean variable $p_i$ to a component $p_i \in P$ the formula of $s$ becomes the set of contraints for $t$ we then create 187 fake components $y_i, i \in [1, 187]$ finally, we add a fake sleigh contraint ($y_1$ or $y_2$ or $\dots$ or $y_{187}$) At this point, we run the solving algorithm for $t$. If we receive a “no” answer, we claim $s$ cannot be satisfied. Otherwise, we take one of the sleighs (i.e., one of the different 187 assignments of $|P| + 187$ variables), we remove the fake $y_i$ variables from it, and we return this as a solution for $s$. Does it work? If s is not satisfiable, t is not satisfiable This follows from the fact that Santa cannot find a single sleigh (and he should find 187 to solve the problem!) which satisfies the formula. So, when Santa returns “no” for $t$, we can safely return “unsatisfiable” for $s$. If s is satisfiable, t has at least one solution Let $x$ be a valid assignment for $s$. Then we claim $x’$ is a valid solution for $t$, where $x’$ is as follows: sleigh $i$ is exactly as $x$ and has $y_i = 1, y_j = 0, j \ne i$</summary></entry><entry><title type="html">IND-RCCA Security</title><link href="https://lrusso96.github.io/blog/cryptography/2020/12/13/ind-rcca-security.html" rel="alternate" type="text/html" title="IND-RCCA Security" /><published>2020-12-13T00:00:00+00:00</published><updated>2020-12-13T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/cryptography/2020/12/13/ind-rcca-security</id><content type="html" xml:base="https://lrusso96.github.io/blog/cryptography/2020/12/13/ind-rcca-security.html">&lt;h2 id=&quot;replayable-cca&quot;&gt;Replayable CCA&lt;/h2&gt;
+&lt;h3 id=&quot;definition&quot;&gt;Definition&lt;/h3&gt;
+
+&lt;p&gt;An encryption scheme $\Pi = (\Gen, \Enc, \Dec)$ is IND-RCCA-1 secure if for all PPT adversaries $A:=(A_1, A_2)$, $\Game_{\Pi, A}^{\textrm{RCCA}}( \lambda, 0) \approx_c \Game^{\textrm{RCCA}}_{\Pi, A}(\lambda, 1)$, where the game is the following:&lt;/p&gt;
+
+\[\begin{aligned}
+&amp;amp;&amp;amp;&amp;amp; \underline{\Game_{\Pi, A}^{\textrm{RCCA}}( \lambda, b)}: \\
+&amp;amp; \\
+&amp;amp;1. &amp;amp;&amp;amp; (pk, sk) \samples \Gen(1^\lambda) \\
+&amp;amp;2. &amp;amp;&amp;amp; (m_0, m_1, z) \samples A_1^{\Dec(sk, \cdot)}(pk) \\
+&amp;amp;3. &amp;amp;&amp;amp; c \samples \Enc(pk, m_b) \\
+&amp;amp;4. &amp;amp;&amp;amp; b' \samples A_2^{\Dec^*(sk, \cdot)}(c, z)
+\end{aligned}\]
+
+&lt;p&gt;The adversary has oracle access to $\Dec^*$, which returns a decryption $m$ of the input chipertext $c$; if $m \in {m_0, m_1}$, then the oracle returns a special symbol. This is the main difference with respect to the &lt;a href=&quot;/blog/cryptography/2020/03/21/ind-cca-security.html&quot;&gt;CCA scenario&lt;/a&gt;.&lt;/p&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="cryptography" /><category term="RCCA" /><category term="Encryption" /><category term="PKE" /><category term="Definition" /><summary type="html">Replayable CCA Definition An encryption scheme $\Pi = (\Gen, \Enc, \Dec)$ is IND-RCCA-1 secure if for all PPT adversaries $A:=(A_1, A_2)$, $\Game_{\Pi, A}^{\textrm{RCCA}}( \lambda, 0) \approx_c \Game^{\textrm{RCCA}}_{\Pi, A}(\lambda, 1)$, where the game is the following: \[\begin{aligned} &amp;amp;&amp;amp;&amp;amp; \underline{\Game_{\Pi, A}^{\textrm{RCCA}}( \lambda, b)}: \\ &amp;amp; \\ &amp;amp;1. &amp;amp;&amp;amp; (pk, sk) \samples \Gen(1^\lambda) \\ &amp;amp;2. &amp;amp;&amp;amp; (m_0, m_1, z) \samples A_1^{\Dec(sk, \cdot)}(pk) \\ &amp;amp;3. &amp;amp;&amp;amp; c \samples \Enc(pk, m_b) \\ &amp;amp;4. &amp;amp;&amp;amp; b' \samples A_2^{\Dec^*(sk, \cdot)}(c, z) \end{aligned}\] The adversary has oracle access to $\Dec^*$, which returns a decryption $m$ of the input chipertext $c$; if $m \in {m_0, m_1}$, then the oracle returns a special symbol. This is the main difference with respect to the CCA scenario.</summary></entry><entry><title type="html">[CTW11] - Multilinear Extension in Python</title><link href="https://lrusso96.github.io/blog/cryptography/2020/11/18/python-multilinear-extension.html" rel="alternate" type="text/html" title="[CTW11] - Multilinear Extension in Python" /><published>2020-11-18T00:00:00+00:00</published><updated>2020-11-18T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/cryptography/2020/11/18/python-multilinear-extension</id><content type="html" xml:base="https://lrusso96.github.io/blog/cryptography/2020/11/18/python-multilinear-extension.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;Here is an exercise proposed in the excellent manuscript &lt;strong&gt;Proofs, Arguments, and Zero-Knowledge&lt;/strong&gt; by &lt;strong&gt;Justin Thaler&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;See also &lt;a href=&quot;https://github.com/lrusso96/proofs&quot;&gt;my solutions&lt;/a&gt; on GitHub.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+
+&lt;p&gt;Fix some prime p of your choosing. Write a Python program that takes as input
+an array of length 2^l specifying all evaluations of a function f:{0,1} → Fp
+and a vector r ∈ Fp and outputs f’(r).&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;We are going to implement CTW11 algorithm in Python. This algorithm has O(n logn) running time and O(logn) space complexity.&lt;/p&gt;
+
+&lt;h3 id=&quot;warm-up&quot;&gt;Warm-up&lt;/h3&gt;
+
+&lt;p&gt;We first define a function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;binaries&lt;/code&gt; to produce all the possible binary strings of length n.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;binaries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repeat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prettify&lt;/code&gt; function as:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prettify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;core&quot;&gt;Core&lt;/h3&gt;
+
+&lt;p&gt;We initialize f’(r) = 0, and process each update (w,f(w)) via:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;f’(r) ← f’(r) + f(w)·χw(r)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CTW11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;evaluations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;evaluations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;You need to specify &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; values&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]):&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ctr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binaries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;evaluations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ctr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chi&lt;/code&gt; is defined at line 6 as:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Cannot compute χw(x): w has length &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; and x has length &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;run-the-code&quot;&gt;Run the code&lt;/h2&gt;
+
+&lt;p&gt;To execute the snippet above, we can write a simple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; program.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Insert a prime value p: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Insert length l: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;evaluations&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;f(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prettify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;): &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binaries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;r&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CTW11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;evaluations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The output f'(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prettify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;) is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="cryptography" /><category term="Exercise" /><category term="Python" /><category term="Thaler" /><category term="Zero-Knowledge" /><summary type="html">Overview Here is an exercise proposed in the excellent manuscript Proofs, Arguments, and Zero-Knowledge by Justin Thaler. See also my solutions on GitHub. The problem Fix some prime p of your choosing. Write a Python program that takes as input an array of length 2^l specifying all evaluations of a function f:{0,1} → Fp and a vector r ∈ Fp and outputs f’(r). Solution We are going to implement CTW11 algorithm in Python. This algorithm has O(n logn) running time and O(logn) space complexity. Warm-up We first define a function binaries to produce all the possible binary strings of length n. def binaries(n): return list(map(list, product([0, 1], repeat=n))) Then we define prettify function as: def prettify(l): return &quot;,&quot;.join(map(str, l)) Core We initialize f’(r) = 0, and process each update (w,f(w)) via: f’(r) ← f’(r) + f(w)·χw(r) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 def CTW11(p: int, l: int, evaluations: List[int], r: List[int]) -&amp;gt; int: if 2**l != len(evaluations): print(f&quot;You need to specify {2**l} values&quot;) exit(1) def chi(w: List[int], x: List[int]): ... ret = 0 ctr = 0 for w in binaries(l): ret += evaluations[ctr]*chi(w, r) ret = ret % p ctr += 1 return ret where chi is defined at line 6 as: def chi(w: List[int], x: List[int]): if len(w) != len(x): print( f&quot;Cannot compute χw(x): w has length {len(w)} and x has length {len(x)}.&quot;) exit(1) pi = 1 for i in range(len(r)): pi *= (x[i]*w[i] + (1 - x[i])*(1-w[i])) pi = pi % p return pi Run the code To execute the snippet above, we can write a simple main program. if __name__ == &quot;__main__&quot;: p = int(input(&quot;Insert a prime value p: &quot;)) l = int(input(&quot;Insert length l: &quot;)) evaluations = [int(input(f&quot;f({prettify(i)}): &quot;)) for i in binaries(l)] r = [int(input(f&quot;r{i}: &quot;)) for i in range(l)] output = CTW11(p, l, evaluations, r) print(f&quot;The output f'({prettify(r)}) is: {output}&quot;)</summary></entry><entry><title type="html">Amazing Classical Music 💛</title><link href="https://lrusso96.github.io/blog/extra/2020/11/17/classical-music.html" rel="alternate" type="text/html" title="Amazing Classical Music 💛" /><published>2020-11-17T00:00:00+00:00</published><updated>2020-11-17T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/extra/2020/11/17/classical-music</id><content type="html" xml:base="https://lrusso96.github.io/blog/extra/2020/11/17/classical-music.html">&lt;h2 id=&quot;tartini---violin-sonata-in-g-minor&quot;&gt;Tartini - Violin Sonata in G minor&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/z7rxl5KsPjs?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;mahler-5-iii&quot;&gt;Mahler 5, III&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/Les39aIKbzE?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;chopin---waltz-in-a-minor&quot;&gt;Chopin - Waltz in A minor&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/algM0c_u99k?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="extra" /><category term="Music" /><summary type="html">Tartini - Violin Sonata in G minor Mahler 5, III Chopin - Waltz in A minor</summary></entry><entry><title type="html">Legendary Horn Solos 💛</title><link href="https://lrusso96.github.io/blog/extra/2020/11/17/horn-solos.html" rel="alternate" type="text/html" title="Legendary Horn Solos 💛" /><published>2020-11-17T00:00:00+00:00</published><updated>2020-11-17T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/extra/2020/11/17/horn-solos</id><content type="html" xml:base="https://lrusso96.github.io/blog/extra/2020/11/17/horn-solos.html">&lt;h2 id=&quot;tchaikovsky-5-ii&quot;&gt;Tchaikovsky 5, II&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/eEbO80q66ak?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;ravel---pavane-pour-une-infante-defunte&quot;&gt;Ravel - Pavane pour une infante defunte&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/VcmS9_aEf_Y?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;borodin-2-ii&quot;&gt;Borodin 2, II&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/qLSj_8LnNIM?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;stravinskij---firebird&quot;&gt;Stravinskij - Firebird&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/b51mnayL44I?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;brahms-1&quot;&gt;Brahms 1&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/lgtJGNuIADQ?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;brahms-3&quot;&gt;Brahms 3&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/Nyee_qvJwrc?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;rachmaninoff---piano-concerto-2&quot;&gt;Rachmaninoff - Piano Concerto 2&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/TA9yIFaYZrc?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;dvorak-9&quot;&gt;Dvorak 9&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/_1mrwTGIfjM?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;mahler-5-iii&quot;&gt;Mahler 5, III&lt;/h2&gt;
+&lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
+  &lt;iframe src=&quot;https://www.youtube.com/embed/52Q0FVB8q3E?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="extra" /><category term="Music" /><summary type="html">Tchaikovsky 5, II Ravel - Pavane pour une infante defunte Borodin 2, II Stravinskij - Firebird Brahms 1 Brahms 3 Rachmaninoff - Piano Concerto 2 Dvorak 9 Mahler 5, III</summary></entry><entry><title type="html">Engineering in Computer Science: Survival Material</title><link href="https://lrusso96.github.io/blog/extra/2020/11/17/university-survival-material-copy.html" rel="alternate" type="text/html" title="Engineering in Computer Science: Survival Material" /><published>2020-11-17T00:00:00+00:00</published><updated>2020-11-17T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/extra/2020/11/17/university-survival-material%20copy</id><content type="html" xml:base="https://lrusso96.github.io/blog/extra/2020/11/17/university-survival-material-copy.html">&lt;h2 id=&quot;algorithm-design&quot;&gt;Algorithm Design&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/lrusso96/Algorithm-Design&quot;&gt;This repository&lt;/a&gt; contains my homework for the Algorithm Design course held by professor S. Leonardi.&lt;/p&gt;
+
+&lt;h2 id=&quot;computer-and-network-security&quot;&gt;Computer and Network Security&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/lrusso96/Computer-Network-Security&quot;&gt;This repository&lt;/a&gt; contains my homework for Computer and Network Security course held by professor F. D’Amore.&lt;/p&gt;
+
+&lt;h2 id=&quot;cryptography&quot;&gt;Cryptography&lt;/h2&gt;
+
+&lt;p&gt;In &lt;a href=&quot;https://github.com/lrusso96/Cryptography&quot;&gt;this repository&lt;/a&gt; I have collected some utils for Cryptography class (1047622), held by professor D. Venturi.&lt;/p&gt;
+
+&lt;h2 id=&quot;machine-learning&quot;&gt;Machine Learning&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/lrusso96/Machine-Learning&quot;&gt;Here&lt;/a&gt; you can find my exercises and my homework for the Machine Learning course held by professor L. Iocchi.&lt;/p&gt;
+
+&lt;h2 id=&quot;network-infrastructures&quot;&gt;Network Infrastructures&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/lrusso96/Network-Infrastructures&quot;&gt;This repository&lt;/a&gt; contains Netkit labs for the Network Infrastructures course held by professor F. Cuomo.&lt;/p&gt;
+
+&lt;h2 id=&quot;software-engineering&quot;&gt;Software Engineering&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/lrusso96/Software-Engineering&quot;&gt;Here&lt;/a&gt; I have collected the source code of my labs for Software Engineering class (1022891).&lt;/p&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="extra" /><category term="University" /><summary type="html">Algorithm Design This repository contains my homework for the Algorithm Design course held by professor S. Leonardi. Computer and Network Security This repository contains my homework for Computer and Network Security course held by professor F. D’Amore. Cryptography In this repository I have collected some utils for Cryptography class (1047622), held by professor D. Venturi. Machine Learning Here you can find my exercises and my homework for the Machine Learning course held by professor L. Iocchi. Network Infrastructures This repository contains Netkit labs for the Network Infrastructures course held by professor F. Cuomo. Software Engineering Here I have collected the source code of my labs for Software Engineering class (1022891).</summary></entry><entry><title type="html">Ped-Pan</title><link href="https://lrusso96.github.io/blog/projects/2020/09/10/ped-pan.html" rel="alternate" type="text/html" title="Ped-Pan" /><published>2020-09-10T00:00:00+00:00</published><updated>2020-09-10T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/projects/2020/09/10/ped-pan</id><content type="html" xml:base="https://lrusso96.github.io/blog/projects/2020/09/10/ped-pan.html"></content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="projects" /><summary type="html"></summary></entry><entry><title type="html">El Gamal is not CCA-secure</title><link href="https://lrusso96.github.io/blog/cryptography/2020/08/20/el-gamal-is-not-cca-secure.html" rel="alternate" type="text/html" title="El Gamal is not CCA-secure" /><published>2020-08-20T00:00:00+00:00</published><updated>2020-08-20T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/cryptography/2020/08/20/el-gamal-is-not-cca-secure</id><content type="html" xml:base="https://lrusso96.github.io/blog/cryptography/2020/08/20/el-gamal-is-not-cca-secure.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This is one of the exercises proposed by Katz and Lindell&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+&lt;p&gt;Given an El Gamal encryption scheme with publick key $pk = (\mathbb{G}, q, g, h=g^\alpha)$, the challenge ciphertext $c_b = (c_1, c_2)$, with $c_1 = g^r$ and $c_2 = h^r \cdot m_b$, the attacker can exploit the &lt;em&gt;malleability&lt;/em&gt; in the following way: asks to decrypt $c = (c_1, c_2 \cdot k)$, for some message $k$ of its choice, and obtains a message $m$ from the oracle.
+Then it easily retrieves $m_b = \frac{m}{k}$.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Exercise 11.9 - Katz, Lindell, Introduction to Modern Cryptography (II edition) &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="cryptography" /><category term="CCA" /><category term="Encryption" /><category term="Katz-Lindell" /><category term="PKE" /><category term="Exercise" /><summary type="html">Overview This is one of the exercises proposed by Katz and Lindell1. Solution Given an El Gamal encryption scheme with publick key $pk = (\mathbb{G}, q, g, h=g^\alpha)$, the challenge ciphertext $c_b = (c_1, c_2)$, with $c_1 = g^r$ and $c_2 = h^r \cdot m_b$, the attacker can exploit the malleability in the following way: asks to decrypt $c = (c_1, c_2 \cdot k)$, for some message $k$ of its choice, and obtains a message $m$ from the oracle. Then it easily retrieves $m_b = \frac{m}{k}$. Exercise 11.9 - Katz, Lindell, Introduction to Modern Cryptography (II edition) &amp;#8617;</summary></entry><entry><title type="html">Impossibility of perfectly secret PKE</title><link href="https://lrusso96.github.io/blog/cryptography/2020/08/18/pke-cannot-be-perfectly-secret.html" rel="alternate" type="text/html" title="Impossibility of perfectly secret PKE" /><published>2020-08-18T00:00:00+00:00</published><updated>2020-08-18T00:00:00+00:00</updated><id>https://lrusso96.github.io/blog/cryptography/2020/08/18/pke-cannot-be-perfectly-secret</id><content type="html" xml:base="https://lrusso96.github.io/blog/cryptography/2020/08/18/pke-cannot-be-perfectly-secret.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p class=&quot;success&quot;&gt;Perfectly secret PKE is impossible, regardless of how long the keys are or how small the message space $\mathcal{M}$ is.&lt;/p&gt;
+
+&lt;p&gt;We sketch a proof by solving an exercise proposed by Katz and Lindell&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;exercise&quot;&gt;Exercise&lt;/h2&gt;
+
+&lt;p&gt;Assume a public-key encryption scheme for single-bit messages with no decryption error.
+Show that, given pk and a ciphertext $c$ computed via $c \samples \Enc_{pk}(m)$, an unbounded adversary can determine $m$ with probability 1.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution-1&quot;&gt;Solution #1&lt;/h3&gt;
+
+&lt;p&gt;A possible approach could be brute-force to determine the secret key $sk$ associated with $pk$.
+The attacker is unbounded, so he can run $\Gen(\cdot)$ many times until obtaining the right pair $(pk, sk)$.
+Then, it can compute $m = \Dec(sk, c)$, and will succeed with probability 1.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution-2&quot;&gt;Solution #2&lt;/h3&gt;
+
+&lt;p&gt;An alternative approach could be brute-force $\Enc$ algorithm: the unbounded attacker will run $c’ = \Enc(pk, \cdot, r)$ for all possible messages and for all possible randomness $r$, until $c = c’$.
+Then, it knows the message $m$ (and even the randomness) and succeeds with probability 1.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Exercise 11.1 - Katz, Lindell, Introduction to Modern Cryptography (II edition) &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Luigi Russo</name><email>russo.1699981@studenti.uniroma1.it</email></author><category term="cryptography" /><category term="Encryption" /><category term="Katz-Lindell" /><category term="PKE" /><category term="Exercise" /><summary type="html">Overview Perfectly secret PKE is impossible, regardless of how long the keys are or how small the message space $\mathcal{M}$ is. We sketch a proof by solving an exercise proposed by Katz and Lindell1. Exercise Assume a public-key encryption scheme for single-bit messages with no decryption error. Show that, given pk and a ciphertext $c$ computed via $c \samples \Enc_{pk}(m)$, an unbounded adversary can determine $m$ with probability 1. Solution #1 A possible approach could be brute-force to determine the secret key $sk$ associated with $pk$. The attacker is unbounded, so he can run $\Gen(\cdot)$ many times until obtaining the right pair $(pk, sk)$. Then, it can compute $m = \Dec(sk, c)$, and will succeed with probability 1. Solution #2 An alternative approach could be brute-force $\Enc$ algorithm: the unbounded attacker will run $c’ = \Enc(pk, \cdot, r)$ for all possible messages and for all possible randomness $r$, until $c = c’$. Then, it knows the message $m$ (and even the randomness) and succeeds with probability 1. Exercise 11.1 - Katz, Lindell, Introduction to Modern Cryptography (II edition) &amp;#8617;</summary></entry></feed>
